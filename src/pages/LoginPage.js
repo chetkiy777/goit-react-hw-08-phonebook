@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux"
 import { useState } from "react"
-import { authOperations } from "redux/auth-operations"
+import authOperations from "redux/auth-operations"
+import { FormContainer } from "styles/Global.styled"
 
 export const LoginPage = () => {
 
@@ -20,7 +21,7 @@ export const LoginPage = () => {
         <div>
             <h1>Вход в систему:</h1>
 
-            <form onSubmit={handleSubmit} autoComplete="off">
+            <FormContainer onSubmit={handleSubmit} autoComplete="off">
                 <label>
                     Почта:
                     <input 
@@ -42,7 +43,7 @@ export const LoginPage = () => {
                 </label>
 
                 <button>Войти</button>
-            </form>
+            </FormContainer>
         </div>
     )
 }

@@ -1,13 +1,16 @@
 import { UserMenuContainer } from "./UserMenu.styled"
-import { useDispatch } from "react-redux"
-import { authOperations } from "redux/auth-operations"
+import { useDispatch, useSelector } from "react-redux"
+import authOperations from "redux/auth-operations"
+import authSelectors from "redux/auth-selectors"
 
-const UserMenu = ({username}) => {
+const UserMenu = () => {
+
+    const username = useSelector(authSelectors.getUsername)
 
     const dispatch = useDispatch()
 
     const logout = () => {
-        dispatch(authOperations.logOut)
+        dispatch(authOperations.logOut())
     }
 
     return <UserMenuContainer>

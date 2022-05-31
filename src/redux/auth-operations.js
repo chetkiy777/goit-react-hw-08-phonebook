@@ -43,4 +43,6 @@ const logOut = createAsyncThunk('auth/logout', async () => {
     }
 })
 
-export const authOperations = {register, logIn, logOut}
+const authOperations = {register, logIn, logOut}
+
+export default authOperations;

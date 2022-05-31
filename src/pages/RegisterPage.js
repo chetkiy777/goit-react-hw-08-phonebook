@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux"
 import { useState } from "react"
-import { authOperations } from "redux/auth-operations"
+import authOperations from "redux/auth-operations"
+import { FormContainer } from "styles/Global.styled"
 
 export const RegisterPage = () => {
 
@@ -22,7 +23,7 @@ export const RegisterPage = () => {
         <div>
             <h1>Регистрация: </h1>
 
-            <form onSubmit={handleSubmit}>
+            <FormContainer onSubmit={handleSubmit}>
                 <label>
                     Имя:
                     <input 
@@ -53,7 +54,7 @@ export const RegisterPage = () => {
                     />
                 </label>
                 <button>Регистрация</button>
-            </form>
+            </FormContainer>
         </div>
     )
 }
