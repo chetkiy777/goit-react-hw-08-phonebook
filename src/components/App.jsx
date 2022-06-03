@@ -1,23 +1,44 @@
-import React from 'react';
-import { AppWrapper } from './App.styled';
+import {React, useEffect} from 'react';
 import AppBar from './AppBar';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { HomePage } from 'pages/HomePage';
 import { LoginPage } from 'pages/LoginPage';
 import { RegisterPage } from 'pages/RegisterPage';
-import { ContactPage } from 'pages/ContactPage';
+import { useDispatch, useSelector } from 'react-redux';
+import authOperations from 'redux/auth/auth-operations';
+import Phonebook from './phonebook/Phonebook';
+
 
 
 export const App = () => {
+  const token = useSelector(state => state.auth.token);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (!token) {
+      return;
+    }
+    dispatch(authOperations.refresh(token));
+  }, [dispatch, token]);
+
   return (
     <div>
       <AppBar/>
 
       <Routes>
         <Route path="/" element={<HomePage/>} />
-        <Route path="/register" element={<RegisterPage/>} />
-        <Route path="/login" element={<LoginPage/>} />
-        <Route path="/contacts" element={<ContactPage/>} />
+        <Route
+          path="/register"
+          element={token ? <Navigate to="/contacts" /> : <RegisterPage />}
+        />
+        <Route
+          path="/login"
+          element={token ? <Navigate to="/contacts" /> : <LoginPage />}
+        />
+        <Route
+          path="/contacts"
+          element={token ? <Phonebook /> : <Navigate to="/login" />}
+        />
       </Routes>
     </div>
   );

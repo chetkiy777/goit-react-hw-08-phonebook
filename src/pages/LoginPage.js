@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux"
 import { useState } from "react"
-import authOperations from "redux/auth-operations"
+import authOperations from "redux/auth/auth-operations"
 import { FormContainer } from "styles/Global.styled"
 
 export const LoginPage = () => {

@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { ContactFormSubmitButton, AddContactForm } from './ContactForm.styled';
-import { useCreateContactMutation, useGetContactsQuery } from 'redux/contactsApi';
+import { useDispatch } from 'react-redux';
+import contactsOperations from '../../redux/contacts/contacts-operations' 
 
-export const ContactForm = () => {
+const ContactForm = () => {
 
-  const [createContact] = useCreateContactMutation();
-  const {data} = useGetContactsQuery();
+  const dispatch = useDispatch();
 
   const [name, setName] = useState('');
-  const [phone, setNumber] = useState('');
+  const [phone, setPhone] = useState('');
   const [isDisabled, toggleDisbled] = useState(true);
 
   useEffect(() => {
@@ -19,27 +19,19 @@ export const ContactForm = () => {
     }
   }, [name, phone])
 
+  useEffect(() => {
+    dispatch(contactsOperations.fetchContacts());
+  }, [dispatch]);
+
   const resetForm = () => {
     setName('');
-    setNumber('');
+    setPhone('');
   };
 
   const handleSubmit = e => {
     e.preventDefault();
-    const contact = {
-      name,
-      phone,
-    };
-
-    let findedName = data.find(contact => contact.name.toLowerCase() === name.toLowerCase())
-    let findedNumber = data.find(contact => contact.phone === phone)
-    if (findedName) {
-      return alert(`${name} is already in contacts.`);
-    } else if (findedNumber) {
-      return alert(`${phone} is already in contacts.`);
-    }
-
-    createContact(contact)
+    dispatch(contactsOperations.addContacts({ name: name, number: phone }));
+    dispatch(contactsOperations.fetchContacts());
     resetForm();
   };
 
@@ -66,7 +58,7 @@ export const ContactForm = () => {
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
           value={phone}
-          onChange={e => setNumber(e.currentTarget.value)}
+          onChange={e => setPhone(e.currentTarget.value)}
         />
       </label>
 
@@ -80,3 +72,4 @@ export const ContactForm = () => {
   );
 };
 
+export default ContactForm

@@ -1,41 +1,39 @@
-import { configureStore, createSlice } from "@reduxjs/toolkit"
-import { contactsApi } from "./contactsApi"
-import storage from "redux-persist/lib/storage"
-import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from "redux-persist"
-import authReducer from './auth-slice'
+import { configureStore } from '@reduxjs/toolkit';
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+import authSlice from './auth/auth-slice';
+import contactsReducer from './contacts/contactsReducer';
 
-const authPersistConfig = {
-    key: 'auth',
-    storage,
-    whitelist: ['token']
-}
+const persistConfig = {
+  key: 'auth',
+  storage,
+  whitelist: ['token'],
+};
 
-const contactsSlice = createSlice({
-    name: 'contacts',
-    initialState: {
-        filter: ''
-    },
+const persistedReducer = persistReducer(persistConfig, authSlice);
 
-    reducers: {
-        setFilter(state, action) {
-           return {...state, filter: action.payload }
-        }
-    }
-})
+const store = configureStore({
+  reducer: {
+    auth: persistedReducer,
+    contacts: contactsReducer,
+  },
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
+  devTools: process.env.NODE_ENV === 'development',
+});
 
-export const {setFilter} = contactsSlice.actions;
-
-export const store = configureStore({
-    reducer: {
-        contacts: contactsSlice.reducer,
-        [contactsApi.reducerPath]: contactsApi.reducer,
-        auth: persistReducer(authPersistConfig, authReducer)
-    },
-    middleware: getDefaultMiddleware => [
-        ...getDefaultMiddleware(),
-        contactsApi.middleware
-    ],
-    devTools: process.env.NODE_ENV === 'development'
-})
-
-export const persistor = persistStore(store)
+export const persistor = persistStore(store);
+export default store;
