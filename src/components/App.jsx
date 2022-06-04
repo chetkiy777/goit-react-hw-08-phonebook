@@ -7,6 +7,7 @@ import { RegisterPage } from 'pages/RegisterPage';
 import { useDispatch, useSelector } from 'react-redux';
 import authOperations from 'redux/auth/auth-operations';
 import Phonebook from './phonebook/Phonebook';
+import { AppWrapper } from 'styles/App.styled';
 
 
 
@@ -22,7 +23,7 @@ export const App = () => {
   }, [dispatch, token]);
 
   return (
-    <div>
+    <AppWrapper>
       <AppBar/>
 
       <Routes>
@@ -40,6 +41,6 @@ export const App = () => {
           element={token ? <Phonebook /> : <Navigate to="/login" />}
         />
       </Routes>
-    </div>
+    </AppWrapper>
   );
 };

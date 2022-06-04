@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-export const ContactsList = styled.ul`
+export const ContactsListForm = styled.ul`
     margin-right: 40px;
 `
 

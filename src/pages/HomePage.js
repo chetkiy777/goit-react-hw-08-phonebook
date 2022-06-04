@@ -1,7 +1,11 @@
+import { Container } from "styles/HomePage.styled"
+
 export const HomePage = () => {
     return(
-        <div>
-            HomePage
-        </div>
+        <Container>
+            <span>Вечір в хату друже!</span>
+            <span>Тут ти маєш можливість записати свої таємні контакти.</span>
+            
+        </Container>
     )
 }

@@ -14,27 +14,26 @@ const ContactsList = ({ onRemoveContact }) => {
     return contact.name.toLowerCase().includes(filter.toLowerCase());
   })
 
-  return <div>
-      <ol>
-        {filterName &&
+  return <div> {filterName &&
           filterName.map(({ id, name, number }) => {
             return (
-              <li key={nanoid()}>
-                {name}: {number}
-                <div>
-                  <button
-                    name="delete"
-                    onClick={() => onRemoveContact({ id, name })}
-                    type="button"
-                  >
-                    Delete
-                  </button>
-                </div>
-              </li>
+              <ul>
+                <li key={nanoid()}>
+                  {name}: {number}
+                  <div>
+                    <button
+                      name="delete"
+                      onClick={() => onRemoveContact({ id, name })}
+                      type="button"
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </li>
+               </ul>
             );
           })
         }
-      </ol>
     </div>
 }
 

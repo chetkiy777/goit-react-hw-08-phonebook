@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux"
 import { useState } from "react"
 import authOperations from "redux/auth/auth-operations"
-import { FormContainer } from "styles/Global.styled"
+import { FormContainer, FormField } from "styles/Global.styled"
 
 export const RegisterPage = () => {
 
@@ -18,41 +18,40 @@ export const RegisterPage = () => {
         setPassword('')
     }
     
-
     return(
         <div>
-            <h1>Регистрация: </h1>
-
             <FormContainer onSubmit={handleSubmit}>
-                <label>
-                    Имя:
-                    <input 
-                        type="string"
-                        name="name"
-                        value={name}
-                        onChange={(e) => setName(e.target.value) }
-                    />
-                </label>
-
-                <label>
-                    Почта:
+                <h3>Регистрация: </h3>
+                <FormField>
+                <label htmlFor="name">Имя</label>
+                <input 
+                    type="string"
+                    name="name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value) }
+                />
+                </FormField>
+                
+                <FormField>
+                    <label htmlFor="email">Почта</label>
                     <input 
                         type="email"
                         name="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value) }
                     />
-                </label>
-
-                <label>
-                    Пароль:
+                </FormField>
+               
+                <FormField>
+                    <label htmlFor="password">Пароль</label>
                     <input 
                         type="password"
                         name="password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value) }
                     />
-                </label>
+                </FormField>
+                
                 <button>Регистрация</button>
             </FormContainer>
         </div>

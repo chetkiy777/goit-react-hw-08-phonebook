@@ -37,36 +37,35 @@ const ContactForm = () => {
 
   return (
     <AddContactForm onSubmit={handleSubmit}>
-      <label>
-        Name:
-        <input
-          type="text"
-          name="name"
-          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-          title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-          required
-          value={name}
-          onChange={e => setName(e.currentTarget.value)}
-        />
-      </label>
-      <label>
-        Number:
-        <input
-          type="number"
-          name="phone"
-          pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-          title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-          required
-          value={phone}
-          onChange={e => setPhone(e.currentTarget.value)}
-        />
-      </label>
+      
+      <label htmlFor="name">Имя:</label>
+      <input
+        type="text"
+        name="name"
+        pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+        title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+        required
+        value={name}
+        onChange={e => setName(e.currentTarget.value)}
+      />
+      
+      <label htmlFor="phone">Телефон</label>
+      <input
+        type="number"
+        name="phone"
+        pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+        title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+        required
+        value={phone}
+        onChange={e => setPhone(e.currentTarget.value)}
+      />
+     
 
       <ContactFormSubmitButton
         type="submit"
         disabled={isDisabled}
       >
-        add contact
+        добавить
       </ContactFormSubmitButton>
     </AddContactForm>
   );

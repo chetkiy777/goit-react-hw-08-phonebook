@@ -1,13 +1,20 @@
 import { useDispatch } from "react-redux"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import authOperations from "redux/auth/auth-operations"
-import { FormContainer } from "styles/Global.styled"
+import { FormContainer, FormField } from "styles/Global.styled"
 
 export const LoginPage = () => {
+
+
 
     const dispatch = useDispatch()
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+
+    useEffect(() => {
+        setEmail('')
+        setPassword('')
+    },[])
 
     const handleSubmit = e => {
         e.preventDefault()
@@ -19,30 +26,32 @@ export const LoginPage = () => {
 
     return(
         <div>
-            <h1>Вход в систему:</h1>
+            
 
-            <FormContainer onSubmit={handleSubmit} autoComplete="off">
-                <label>
-                    Почта:
+            <FormContainer onSubmit={handleSubmit}>
+                <h3>Вход в систему:</h3>
+                <FormField>
+                    <label htmlFor="email">Почта</label>
                     <input 
                         type="email"
                         name="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value) }
                     />
-                </label>
-
-                <label>
-                    Пароль:
+                </FormField>
+                
+                <FormField>
+                    <label htmlFor="password">Пароль</label>
                     <input 
                         type="password"
                         name="password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value) }
                     />
-                </label>
+                </FormField>
+                
 
-                <button>Войти</button>
+                <button>Вход</button>
             </FormContainer>
         </div>
     )
