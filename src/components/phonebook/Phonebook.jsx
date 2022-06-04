@@ -3,6 +3,7 @@ import ContactForm from '../ContactForm/ContactForm';
 import ContactsList from '../Contacts/ContactsList';
 import Filter from '../Filter/Filter';
 import contactsOperations from '../../redux/contacts/contacts-operations'
+import {PhonebookWrapper} from '../../styles/Phonebook.styled'
 
 
 function Phonebook() {
@@ -14,15 +15,17 @@ function Phonebook() {
   };
 
   return (
-    <div>
-      <h1>Phonebook</h1>
+    <PhonebookWrapper>
+
+      <h2>Телефонная книга</h2>
       <ContactForm />
-      <h2>Contacts</h2>
+
+      <h2>Контакты</h2>
       <Filter />
       <ContactsList
         onRemoveContact={removeContact}
       />
-    </div>
+    </PhonebookWrapper>
   );
 }
 
