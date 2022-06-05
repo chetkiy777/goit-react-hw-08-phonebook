@@ -1,13 +1,13 @@
 import {React, useEffect} from 'react';
-import AppBar from './AppBar';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { HomePage } from 'pages/HomePage';
 import { LoginPage } from 'pages/LoginPage';
 import { RegisterPage } from 'pages/RegisterPage';
 import { useDispatch, useSelector } from 'react-redux';
-import authOperations from 'redux/auth/auth-operations';
-import Phonebook from './Phonebook/Phonebook';
+import { Phonebook } from './Phonebook/Phonebook';
 import { AppWrapper } from 'styles/App.styled';
+import AppBar from './AppBar';
+import authOperations from 'redux/auth/auth-operations';
 
 
 

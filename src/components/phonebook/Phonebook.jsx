@@ -6,26 +6,24 @@ import contactsOperations from '../../redux/contacts/contacts-operations'
 import {PhonebookWrapper} from '../../styles/Phonebook.styled'
 
 
-const Phonebook = () => {
-  const dispatch = useDispatch();
+export const Phonebook = () => {
 
+  const dispatch = useDispatch();
   const removeContact = contactId => {
     dispatch(contactsOperations.deleteContacts(contactId));
     dispatch(contactsOperations.fetchContacts());
   };
 
-  return (
+  return <>
     <PhonebookWrapper>
       <h2>Телефонная книга</h2>
       <ContactForm />
 
-      
       <Filter />
       <ContactsList
         onRemoveContact={removeContact}
       />
     </PhonebookWrapper>
   );
+  </>
 }
-
-export default Phonebook;
