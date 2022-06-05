@@ -4,7 +4,7 @@ import { HomePage } from 'pages/HomePage';
 import { LoginPage } from 'pages/LoginPage';
 import { RegisterPage } from 'pages/RegisterPage';
 import { useDispatch, useSelector } from 'react-redux';
-import { Phonebook } from './Phonebook/Phonebook';
+import { Phonebook } from './phonebook/Phonebook';
 import { AppWrapper } from 'styles/App.styled';
 import AppBar from './AppBar';
 import authOperations from 'redux/auth/auth-operations';
