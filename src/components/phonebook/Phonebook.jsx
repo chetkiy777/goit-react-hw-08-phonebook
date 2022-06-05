@@ -16,11 +16,10 @@ function Phonebook() {
 
   return (
     <PhonebookWrapper>
-
       <h2>Телефонная книга</h2>
       <ContactForm />
 
-      <h2>Контакты</h2>
+      
       <Filter />
       <ContactsList
         onRemoveContact={removeContact}

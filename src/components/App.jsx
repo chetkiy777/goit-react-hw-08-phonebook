@@ -6,7 +6,7 @@ import { LoginPage } from 'pages/LoginPage';
 import { RegisterPage } from 'pages/RegisterPage';
 import { useDispatch, useSelector } from 'react-redux';
 import authOperations from 'redux/auth/auth-operations';
-import Phonebook from './phonebook/Phonebook';
+import Phonebook from './Phonebook/Phonebook';
 import { AppWrapper } from 'styles/App.styled';
 
 

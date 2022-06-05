@@ -1,6 +1,6 @@
-import { FilteredBlock } from './Filter.styled';
 import { useSelector, useDispatch } from 'react-redux';
 import contactsOperations from '../../redux/contacts/contacts-operations'
+import { FilterBlock } from 'styles/Filter.styled';
 
 const Filter = () => {
   const filterValue = useSelector(state => state.contacts.filter);
@@ -11,14 +11,15 @@ const Filter = () => {
   };
 
   return (
-    <div>
-      <FilteredBlock>Find contacts by name</FilteredBlock>
+    <FilterBlock>
+      <h3>мои контакты</h3>
       <input
         name="filter"
         value={filterValue}
         onChange={onChange}
+        placeholder="поиск"
       />
-    </div>
+    </FilterBlock>
   );
 };
 

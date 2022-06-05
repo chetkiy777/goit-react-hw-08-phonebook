@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { nanoid } from '@reduxjs/toolkit';
+import { ContactsListItem, ContactsListBlock } from 'styles/ContactsList.styled';
 
 const ContactsList = ({ onRemoveContact }) => {
 
@@ -14,27 +15,30 @@ const ContactsList = ({ onRemoveContact }) => {
     return contact.name.toLowerCase().includes(filter.toLowerCase());
   })
 
-  return <div> {filterName &&
+  return <ContactsListBlock>
+        {filterName &&
           filterName.map(({ id, name, number }) => {
             return (
-              <ul>
-                <li key={nanoid()}>
-                  {name}: {number}
+                <ContactsListItem key={id}>
+                  <span>{name}</span>
+                  <span>{number}</span>
                   <div>
                     <button
                       name="delete"
-                      onClick={() => onRemoveContact({ id, name })}
+                      onClick={() => onRemoveContact(id)}
                       type="button"
                     >
-                      Delete
+                      X
                     </button>
                   </div>
-                </li>
-               </ul>
+                </ContactsListItem>
+               
             );
+
+            
           })
         }
-    </div>
+    </ContactsListBlock>
 }
 
 export default ContactsList

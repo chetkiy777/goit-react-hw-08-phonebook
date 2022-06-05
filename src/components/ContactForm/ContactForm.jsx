@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ContactFormSubmitButton, AddContactForm } from './ContactForm.styled';
+import { ContactFormSubmitButton, AddContactForm } from '../../styles/ContactForm.styled'
 import { useDispatch } from 'react-redux';
 import contactsOperations from '../../redux/contacts/contacts-operations' 
 
@@ -38,7 +38,7 @@ const ContactForm = () => {
   return (
     <AddContactForm onSubmit={handleSubmit}>
       
-      <label htmlFor="name">Имя:</label>
+      <label htmlFor="name">Имя</label>
       <input
         type="text"
         name="name"

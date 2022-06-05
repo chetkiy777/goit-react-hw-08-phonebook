@@ -5,6 +5,7 @@ export const AddContactForm = styled.form`
     flex-direction: column;
     padding: 10px;
     width: 200px;
+    margin-bottom: 60px;
 
     label {
         margin-top: 20px;
