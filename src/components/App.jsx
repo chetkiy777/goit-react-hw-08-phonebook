@@ -27,7 +27,7 @@ export const App = () => {
       <AppBar/>
 
       <Routes>
-        <Route path="/" element={<HomePage/>} />
+        <Route path="/" index element={<HomePage/>} />
         <Route
           path="/register"
           element={token ? <Navigate to="/contacts" /> : <RegisterPage />}

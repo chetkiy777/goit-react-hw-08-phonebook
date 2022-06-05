@@ -6,7 +6,7 @@ import contactsOperations from '../../redux/contacts/contacts-operations'
 import {PhonebookWrapper} from '../../styles/Phonebook.styled'
 
 
-function Phonebook() {
+const Phonebook = () => {
   const dispatch = useDispatch();
 
   const removeContact = contactId => {
