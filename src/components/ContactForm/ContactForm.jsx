@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { ContactFormSubmitButton, AddContactForm } from '../../styles/ContactForm.styled'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import contactsOperations from '../../redux/contacts/contacts-operations' 
 
 const ContactForm = () => {
 
   const dispatch = useDispatch();
+
+  const contacts = useSelector(state => state.contacts.items)
 
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
@@ -30,6 +32,13 @@ const ContactForm = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
+    let findedName = contacts.find(contact => contact.name.toLowerCase() === name.toLowerCase())
+    let findedNumber = contacts.find(contact => contact.phone === phone)
+    if (findedName) {
+      return alert(`${name} is already in contacts.`);
+    } else if (findedNumber) {
+      return alert(`${phone} is already in contacts.`);
+    }
     dispatch(contactsOperations.addContacts({ name: name, number: phone }));
     dispatch(contactsOperations.fetchContacts());
     resetForm();
